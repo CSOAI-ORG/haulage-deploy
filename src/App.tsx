@@ -32,6 +32,10 @@ const ControlsPage = lazy(() => import("./pages/ControlsPage"));
 const IntegrationsPage = lazy(() => import("./pages/IntegrationsPage"));
 const StatusPage = lazy(() => import("./pages/StatusPage"));
 const ChangelogPage = lazy(() => import("./pages/ChangelogPage"));
+const WalkaroundPage = lazy(() => import("./pages/WalkaroundPage"));
+const RoiCalculatorPage = lazy(() => import("./pages/RoiCalculatorPage"));
+const McpAppsShowcasePage = lazy(() => import("./pages/McpAppsShowcasePage"));
+const AccreditationsPage = lazy(() => import("./pages/AccreditationsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -65,6 +69,10 @@ const App = () => (
             <Route path="/integrations" element={<IntegrationsPage />} />
             <Route path="/status" element={<StatusPage />} />
             <Route path="/changelog" element={<ChangelogPage />} />
+            <Route path="/walkaround" element={<WalkaroundPage />} />
+            <Route path="/roi" element={<RoiCalculatorPage />} />
+            <Route path="/mcp-apps" element={<McpAppsShowcasePage />} />
+            <Route path="/accreditations" element={<AccreditationsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />
