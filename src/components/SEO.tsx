@@ -60,6 +60,84 @@ const SEO = ({
     knowsLanguage: LOCALES.map(l => l.code),
   };
 
+  // Site-wide SoftwareApplication — emitted on every page so the
+  // SaaS metadata (price, rating-free, free trial) appears alongside
+  // page-specific JSON-LD. Per research finding: SoftwareApplication
+  // is one of the schemas LLMs surface most for SaaS discovery.
+  const softwareApplicationLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "MEOK Haulage.app — 32 MCP trade-compliance catalogue",
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "ComplianceManagement",
+    operatingSystem: "Cross-platform (MCP-compatible: Claude, ChatGPT, VS Code Copilot, Goose, Postman)",
+    url: BASE_URL,
+    publisher: {
+      "@type": "Organization",
+      name: "MEOK AI Labs / CSOAI LTD",
+      url: "https://meok.ai",
+    },
+    offers: [
+      { "@type": "Offer", name: "Free", price: "0", priceCurrency: "GBP", category: "subscription" },
+      { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "GBP", category: "subscription" },
+      { "@type": "Offer", name: "Team", price: "99", priceCurrency: "GBP", category: "subscription" },
+    ],
+    featureList: [
+      "32 MCP servers across 9 trade-compliance verticals",
+      "Signed-by-default attestation chain (HMAC-SHA256)",
+      "Public verifier endpoint",
+      "EU AI Act + UK AI Bill bridge",
+      "DVSA Earned Recognition path",
+      "OpenAPI 3.1 + Swagger UI",
+      "14-language localisation incl. RTL",
+      "PWA + offline-capable",
+    ],
+    softwareVersion: "1.x",
+    isAccessibleForFree: true,
+  };
+
+  // Always-on FAQ JSON-LD — the most-cited buyer questions, kept terse so
+  // they don't bloat the page. Specific FAQ pages (FAQPage / DefinedTermSet)
+  // are supplied via extraJsonLd by individual routes.
+  const siteFaqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is Haulage.app?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A 32-MCP catalogue + ecosystem for global trade compliance (UK/EU/US/AU/CA/MENA + air + sea + rail). Every MCP signs its attestations with HMAC-SHA256 and bridges to EU AI Act + UK AI Bill governance.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Who is MEOK AI Labs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "CSOAI LTD (Companies House 16939677), trading as MEOK AI Labs. UK-based, MIT-licensed open-source publisher of 271+ MCP servers on PyPI.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is there a free tier?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes — Free plan covers personal + small fleet usage. Pro at £19/mo + Team at £99/mo for fleets needing audit-ready signed attestations + governance bridge.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How are attestations verified?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "POST the payload + signature to meok-attestation-api.vercel.app/verify. No SDK required. Public, free, deterministic.",
+        },
+      },
+    ],
+  };
+
   return (
     <Helmet htmlAttributes={{ lang: currentLang, dir: isRtl ? "rtl" : "ltr" }}>
       <title>{fullTitle}</title>
@@ -108,6 +186,8 @@ const SEO = ({
       <meta name="theme-color" content="#F97316" />
       <meta name="format-detection" content="telephone=yes" />
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      <script type="application/ld+json">{JSON.stringify(softwareApplicationLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(siteFaqLd)}</script>
       {extraJsonLd &&
         (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]).map((node, idx) => (
           <script key={`extra-jsonld-${idx}`} type="application/ld+json">

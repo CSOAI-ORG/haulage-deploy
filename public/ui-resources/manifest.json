@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "spec": "SEP-1865",
+  "ratified": "2026-01-26",
+  "publisher": "MEOK AI Labs / CSOAI LTD",
+  "ui_resources": [
+    {
+      "uri": "ui://meok/tacho-audit/forecast",
+      "tool": "forecast_ocrs_90_day",
+      "mcp": "meok-tacho-audit-mcp",
+      "html_url": "https://haulage.app/ui-resources/tacho-forecast.html",
+      "mime": "text/html;profile=mcp-app",
+      "sandbox": "allow-scripts allow-forms",
+      "description": "Interactive DVSA OCRS 90-day forecast with signed-by-MEOK attestation."
+    }
+  ]
+}
