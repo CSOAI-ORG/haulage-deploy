@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+
+# Added 2026-06-07 — exclude Capacitor native shells + build artefacts
+ios/
+android/
+dist/
+node_modules/
+playwright-report/
+coverage/
+.vercel/
+test-results/

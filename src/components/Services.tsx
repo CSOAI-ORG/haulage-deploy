@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { services } from "@/data/services";
 
 const Services = () => {
+  const { t } = useTranslation();
   return (
     <section id="trade-verticals" className="py-24 bg-tr8-charcoal">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-primary font-display uppercase tracking-wider text-sm">The Trade Stack</span>
+          <span className="text-primary font-display uppercase tracking-wider text-sm">{t("services.eyebrow")}</span>
           <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-6">
-            Four <span className="text-gradient">Trade Verticals</span>
+            {t("services.title_prefix")} <span className="text-gradient">{t("services.title_highlight")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Each vertical is a standalone SaaS — but they share auth, billing, compliance, and the same nine MCP servers. Pick one. Bolt on the others when you're ready.
+            {t("services.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -38,7 +40,7 @@ const Services = () => {
                   ))}
                 </ul>
                 <span className="inline-flex items-center gap-2 text-primary font-display text-sm uppercase tracking-wider group-hover:gap-3 transition-all">
-                  {service.external ? "Visit Site" : "Browse MCPs"} <ArrowRight className="w-4 h-4" />
+                  {service.external ? t("services.cta_external") : t("services.cta_internal")} <ArrowRight className="w-4 h-4" />
                 </span>
               </>
             );

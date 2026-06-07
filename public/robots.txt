@@ -1,7 +1,13 @@
+# Haulage.app — MEOK AI Labs
+# AI-crawler friendly. We want the catalogue indexed by both search engines and LLM training/retrieval systems.
+
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Twitterbot
@@ -10,5 +16,42 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+# AI crawlers (explicit allow; opt-in to ecosystem visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Default: open
 User-agent: *
 Allow: /
+
+# Sitemaps + machine-readable catalogue
+Sitemap: https://haulage.app/sitemap.xml
+# llms.txt — full identity, offer, MCP catalogue in Markdown
+# catalogue.json — full 32-MCP catalogue as structured JSON

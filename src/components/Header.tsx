@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Package } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -37,13 +41,18 @@ const Header = () => {
             </div>
           </Link>
           <nav className="hidden lg:flex items-center gap-8" aria-label="Primary">
-            <Link to="/" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">Home</Link>
-            <a href="/#trade-verticals" onClick={goToTrades} className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">Trades</a>
-            <Link to="/mcps" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">MCPs</Link>
-            <Link to="/about" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">About</Link>
-            <Link to="/contact" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">Contact</Link>
+            <Link to="/" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("footer.nav_home")}</Link>
+            <a href="/#trade-verticals" onClick={goToTrades} className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("footer.trade_verticals_heading")}</a>
+            <Link to="/mcps" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("footer.nav_mcps")}</Link>
+            <Link to="/map" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("nav.map", "Map")}</Link>
+            <Link to="/governance" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("nav.governance", "Governance")}</Link>
+            <Link to="/pricing" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("nav.pricing", "Pricing")}</Link>
+            <Link to="/about" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("footer.nav_about")}</Link>
+            <Link to="/contact" className="font-display text-sm uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors duration-300">{t("footer.nav_contact")}</Link>
           </nav>
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeSwitcher />
+            <LanguageSwitcher />
             <Button variant="hero" size="lg" asChild>
               <a href="https://buy.stripe.com/14A4gB3K4eUWgYR56o8k836" target="_blank" rel="noopener noreferrer">Pro £79/mo</a>
             </Button>
@@ -56,12 +65,19 @@ const Header = () => {
       {isMenuOpen && (
         <nav id="mobile-nav" aria-label="Mobile" className="lg:hidden bg-background border-t border-border">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
-            <Link to="/" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <a href="/#trade-verticals" onClick={goToTrades} className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3">Trades</a>
-            <Link to="/mcps" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>MCPs</Link>
-            <Link to="/about" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>About</Link>
-            <Link to="/contact" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-            <div className="pt-4 border-t border-border mt-2">
+            <Link to="/" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("footer.nav_home")}</Link>
+            <a href="/#trade-verticals" onClick={goToTrades} className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3">{t("footer.trade_verticals_heading")}</a>
+            <Link to="/mcps" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("footer.nav_mcps")}</Link>
+            <Link to="/map" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("nav.map", "Map")}</Link>
+            <Link to="/governance" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("nav.governance", "Governance")}</Link>
+            <Link to="/pricing" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("nav.pricing", "Pricing")}</Link>
+            <Link to="/about" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("footer.nav_about")}</Link>
+            <Link to="/contact" className="font-display text-lg uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors py-3" onClick={() => setIsMenuOpen(false)}>{t("footer.nav_contact")}</Link>
+            <div className="pt-4 border-t border-border mt-2 flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <ThemeSwitcher />
+                <LanguageSwitcher />
+              </div>
               <Button variant="hero" className="w-full" asChild>
                 <a href="https://buy.stripe.com/14A4gB3K4eUWgYR56o8k836" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>Pro £79/mo</a>
               </Button>

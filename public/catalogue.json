@@ -1,0 +1,498 @@
+{
+  "@version": "1.0",
+  "site": "haulage.app",
+  "operator": "MEOK AI Labs / CSOAI LTD",
+  "license": "MIT",
+  "signing": "HMAC-SHA256",
+  "verifierEndpoint": "https://meok-attestation-api.vercel.app/verify",
+  "governanceBridge": "meok-haulage-governance-bridge-mcp",
+  "frameworks": [
+    "EU AI Act",
+    "UK AI Bill Article 22c",
+    "NIST AI RMF",
+    "ISO/IEC 42001",
+    "CoE AI Treaty"
+  ],
+  "totalMCPs": 32,
+  "liveMCPs": 7,
+  "pendingMCPs": 25,
+  "disclosure": "32 MCPs in the catalogue. 7 confirmed pip-installable today; 25 are built + wheel-ready, queued for PyPI publish (429-rate-limited new-account batch). Email nicholas@meok.ai for early-access wheels to any unreleased MCP.",
+  "mcps": [
+    {
+      "id": "haulage-uk-compliance",
+      "name": "haulage-uk-compliance-mcp",
+      "tagline": "DVSA, tachograph, drivers' hours, vehicle safety, road-user levy.",
+      "pypi": "https://pypi.org/project/haulage-uk-compliance-mcp/",
+      "install": "pip install haulage-uk-compliance-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/4gMbJ3fsM28a381fL28k844",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "haulage.app",
+        "grabhire.ai"
+      ],
+      "published": true
+    },
+    {
+      "id": "skip-hire",
+      "name": "skip-hire-ai-mcp",
+      "tagline": "Waste-carrier reg, EWC codes, consignment notes, duty-of-care.",
+      "pypi": "https://pypi.org/project/skip-hire-ai-mcp/",
+      "install": "pip install skip-hire-ai-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/4gM8wR6Wg8wy4c5gP68k845",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "muckaway.ai"
+      ],
+      "published": true
+    },
+    {
+      "id": "nrswa",
+      "name": "nrswa-ai-mcp",
+      "tagline": "S50 licence, works classification, S74 overrun, noticing timeline.",
+      "pypi": "https://pypi.org/project/nrswa-ai-mcp/",
+      "install": "pip install nrswa-ai-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/7sYdRbcgA1466kd0Q88k847",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "haulage.app"
+      ],
+      "published": true
+    },
+    {
+      "id": "iso-19650",
+      "name": "construction-iso-19650-mcp",
+      "tagline": "BIM maturity, EIR, BEP, CDE structure, clause lookup.",
+      "pypi": "https://pypi.org/project/construction-iso-19650-mcp/",
+      "install": "pip install construction-iso-19650-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/eVq9AV0xSeUW6kdeGY8k846",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "chas",
+      "name": "chas-elite-prep-mcp",
+      "tagline": "CHAS readiness, H&S audit, SSIP mutual recognition, PQ templates.",
+      "pypi": "https://pypi.org/project/chas-elite-prep-mcp/",
+      "install": "pip install chas-elite-prep-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/9B6aEZ94ocMO6kdcyQ8k900",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "crane-cpcs",
+      "name": "crane-hire-cpcs-mcp",
+      "tagline": "CPCS card verify, lift plans, appointed person, LOLER exam.",
+      "pypi": "https://pypi.org/project/crane-hire-cpcs-mcp/",
+      "install": "pip install crane-hire-cpcs-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/14AcN70xS6oq8sl56o8k901",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "planthire.ai",
+        "crane-hire"
+      ],
+      "published": false
+    },
+    {
+      "id": "concrete-pump-cpa",
+      "name": "concrete-pump-cpa-mcp",
+      "tagline": "CPA compliance, operator certs, ground bearing, exclusion zones.",
+      "pypi": "https://pypi.org/project/concrete-pump-cpa-mcp/",
+      "install": "pip install concrete-pump-cpa-mcp",
+      "tools": 5,
+      "starterStripeUrl": "https://buy.stripe.com/fZu3cxa8seUW6kdfL28k902",
+      "starterPrice": "£29/mo",
+      "domains": [
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "muckaway",
+      "name": "muckaway-ai-mcp",
+      "tagline": "Waste volume, skip pricing, EWC, transport, transfer notes.",
+      "pypi": "https://pypi.org/project/muckaway-ai-mcp/",
+      "install": "pip install muckaway-ai-mcp",
+      "tools": 6,
+      "starterStripeUrl": null,
+      "starterPrice": "Bundled in SaaS",
+      "domains": [
+        "muckaway.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "planthire",
+      "name": "planthire-ai-mcp",
+      "tagline": "Equipment search, rental quotes, availability, booking, safety.",
+      "pypi": "https://pypi.org/project/planthire-ai-mcp/",
+      "install": "pip install planthire-ai-mcp",
+      "tools": 6,
+      "starterStripeUrl": null,
+      "starterPrice": "Bundled in SaaS",
+      "domains": [
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "car-transport-uk",
+      "name": "meok-car-transport-uk-mcp",
+      "tagline": "BVRLA, DVSA, NAMA POD, vehicle damage forms, recovery code of practice.",
+      "pypi": "https://pypi.org/project/meok-car-transport-uk-mcp/",
+      "install": "pip install meok-car-transport-uk-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "Coming soon",
+      "domains": [
+        "car-transport",
+        "haulage.app"
+      ],
+      "published": false
+    },
+    {
+      "id": "ev-recall-transport",
+      "name": "meok-ev-recall-transport-mcp",
+      "tagline": "🟢 LIVE — ADR Class 9 EV-recall, UN3556/7/8, DGSA workflow, thermal-runaway routing.",
+      "pypi": "https://pypi.org/project/meok-ev-recall-transport-mcp/",
+      "install": "pip install meok-ev-recall-transport-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£79/mo",
+      "domains": [
+        "car-transport"
+      ],
+      "published": true
+    },
+    {
+      "id": "vehicle-handover",
+      "name": "meok-vehicle-handover-mcp",
+      "tagline": "🟢 LIVE — NAMA grading, BVRLA Fair W&T, POD photo bundle, damage-defender pack.",
+      "pypi": "https://pypi.org/project/meok-vehicle-handover-mcp/",
+      "install": "pip install meok-vehicle-handover-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£49/mo",
+      "domains": [
+        "car-transport"
+      ],
+      "published": true
+    },
+    {
+      "id": "crane-hire-uk",
+      "name": "meok-crane-hire-uk-mcp",
+      "tagline": "Mobile + tower + crawler cranes, BS 7121 parts 1/3/5, CPA terms, lift plan AI.",
+      "pypi": "https://pypi.org/project/meok-crane-hire-uk-mcp/",
+      "install": "pip install meok-crane-hire-uk-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "Coming soon",
+      "domains": [
+        "crane-hire",
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "bs7121",
+      "name": "meok-bs7121-mcp",
+      "tagline": "🟢 LIVE — BS 7121 parts 1/3/4/5/7, AP cert verify, CPA Contract-Lift triage, GBP calc.",
+      "pypi": "https://pypi.org/project/meok-bs7121-mcp/",
+      "install": "pip install meok-bs7121-mcp",
+      "tools": 10,
+      "starterStripeUrl": null,
+      "starterPrice": "£99/mo",
+      "domains": [
+        "crane-hire",
+        "hiab-hire"
+      ],
+      "published": true
+    },
+    {
+      "id": "cpa-contract-lift",
+      "name": "meok-cpa-contract-lift-mcp",
+      "tagline": "🟢 LIVE — CPA Hire vs Contract Lift triage, T&C templates, Baldwins £951k case avoidance.",
+      "pypi": "https://pypi.org/project/meok-cpa-contract-lift-mcp/",
+      "install": "pip install meok-cpa-contract-lift-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£79/mo",
+      "domains": [
+        "crane-hire",
+        "hiab-hire"
+      ],
+      "published": false
+    },
+    {
+      "id": "hiab-uk",
+      "name": "meok-hiab-uk-mcp",
+      "tagline": "Lorry-loader hire, brick-grab POD, BS 7121-4, CPCS A36, slinger A40 verify.",
+      "pypi": "https://pypi.org/project/meok-hiab-uk-mcp/",
+      "install": "pip install meok-hiab-uk-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "Coming soon",
+      "domains": [
+        "hiab-hire",
+        "haulage.app"
+      ],
+      "published": false
+    },
+    {
+      "id": "allmi-hiab",
+      "name": "meok-allmi-hiab-mcp",
+      "tagline": "🟢 LIVE — Hiab lift plan + brick-grab POD + magic-button SMS to site foreman.",
+      "pypi": "https://pypi.org/project/meok-allmi-hiab-mcp/",
+      "install": "pip install meok-allmi-hiab-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£39/mo",
+      "domains": [
+        "hiab-hire"
+      ],
+      "published": false
+    },
+    {
+      "id": "dvsa-olicence",
+      "name": "meok-dvsa-olicence-mcp",
+      "tagline": "🟢 LIVE — O-licence audit + Public Inquiry brief generator (life-or-death wedge).",
+      "pypi": "https://pypi.org/project/meok-dvsa-olicence-mcp/",
+      "install": "pip install meok-dvsa-olicence-mcp",
+      "tools": 9,
+      "starterStripeUrl": null,
+      "starterPrice": "£79/mo",
+      "domains": [
+        "general-haulage",
+        "haulage.app",
+        "grabhire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "tacho-audit",
+      "name": "meok-tacho-audit-mcp",
+      "tagline": "🟢 LIVE — Smart Tacho 2 (Jul 2026), OCRS forecasting, drivers' hours, PI brief.",
+      "pypi": "https://pypi.org/project/meok-tacho-audit-mcp/",
+      "install": "pip install meok-tacho-audit-mcp",
+      "tools": 10,
+      "starterStripeUrl": null,
+      "starterPrice": "£29/mo",
+      "domains": [
+        "general-haulage",
+        "haulage.app",
+        "grabhire.ai",
+        "car-transport"
+      ],
+      "published": true
+    },
+    {
+      "id": "cpc-tracker",
+      "name": "meok-cpc-tracker-mcp",
+      "tagline": "Drivers' CPC 35h-per-5yr tracker, JAUPT course lookup, expiry alerts, refresher slots.",
+      "pypi": "https://pypi.org/project/meok-cpc-tracker-mcp/",
+      "install": "pip install meok-cpc-tracker-mcp",
+      "tools": 5,
+      "starterStripeUrl": null,
+      "starterPrice": "Coming soon",
+      "domains": [
+        "general-haulage",
+        "haulage.app"
+      ],
+      "published": false
+    },
+    {
+      "id": "fors-clocs",
+      "name": "meok-fors-clocs-mcp",
+      "tagline": "🟢 LIVE — FORS Bronze/Silver/Gold + CLOCS + DVSA ER data feed. Tender-gating.",
+      "pypi": "https://pypi.org/project/meok-fors-clocs-mcp/",
+      "install": "pip install meok-fors-clocs-mcp",
+      "tools": 9,
+      "starterStripeUrl": null,
+      "starterPrice": "£49/mo",
+      "domains": [
+        "general-haulage",
+        "haulage.app",
+        "planthire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "dvs-london",
+      "name": "meok-dvs-london-mcp",
+      "tagline": "London Direct Vision Standard 3+ star (Oct 2024+), star-rating lookup, Safe System spec.",
+      "pypi": "https://pypi.org/project/meok-dvs-london-mcp/",
+      "install": "pip install meok-dvs-london-mcp",
+      "tools": 5,
+      "starterStripeUrl": null,
+      "starterPrice": "Coming soon",
+      "domains": [
+        "general-haulage",
+        "haulage.app",
+        "grabhire.ai"
+      ],
+      "published": false
+    },
+    {
+      "id": "eu-mobility-package",
+      "name": "meok-eu-mobility-package-mcp",
+      "tagline": "🇪🇺 EU 561/2006 + Posted Workers + IMI + Cabotage 3-in-7 + Smart Tacho 2 G2V2 (1 Jul 2026).",
+      "pypi": "https://pypi.org/project/meok-eu-mobility-package-mcp/",
+      "install": "pip install meok-eu-mobility-package-mcp",
+      "tools": 9,
+      "starterStripeUrl": null,
+      "starterPrice": "€49/mo",
+      "domains": [
+        "general-haulage",
+        "car-transport"
+      ],
+      "published": false
+    },
+    {
+      "id": "fmcsa-hours-of-service",
+      "name": "meok-fmcsa-hours-of-service-mcp",
+      "tagline": "🇺🇸 US FMCSA HoS 11/14/60-70, ELD mandate (Dec 2017+), CSA BASICs, safety audit prep.",
+      "pypi": "https://pypi.org/project/meok-fmcsa-hours-of-service-mcp/",
+      "install": "pip install meok-fmcsa-hours-of-service-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "$39/mo",
+      "domains": [
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "nhvr-australia",
+      "name": "meok-nhvr-australia-mcp",
+      "tagline": "🇦🇺 Australia NHVR HVNL + NHVAS + Chain of Responsibility (AUD 3m + 5yr penalty bands).",
+      "pypi": "https://pypi.org/project/meok-nhvr-australia-mcp/",
+      "install": "pip install meok-nhvr-australia-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "AUD 49/mo",
+      "domains": [
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "transport-canada-hos",
+      "name": "meok-transport-canada-hos-mcp",
+      "tagline": "🇨🇦 Canada SOR/2005-313 HoS (13h S/15h N), T-T-019 ELD, NSC ratings, provincial audit prep.",
+      "pypi": "https://pypi.org/project/meok-transport-canada-hos-mcp/",
+      "install": "pip install meok-transport-canada-hos-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "CAD 49/mo",
+      "domains": [
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "iru-tir-international",
+      "name": "meok-iru-tir-international-mcp",
+      "tagline": "🌍 IRU TIR Carnet (78 countries) + CMR + AEO + ADR cross-border tunnel restrictions.",
+      "pypi": "https://pypi.org/project/meok-iru-tir-international-mcp/",
+      "install": "pip install meok-iru-tir-international-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "€99/mo",
+      "domains": [
+        "general-haulage",
+        "car-transport"
+      ],
+      "published": false
+    },
+    {
+      "id": "iata-dgr-air-cargo",
+      "name": "meok-iata-dgr-air-cargo-mcp",
+      "tagline": "✈ IATA DGR air cargo — UN3480-3091, PI 965-970 lithium, §8 Shipper's Declaration, CAO-only.",
+      "pypi": "https://pypi.org/project/meok-iata-dgr-air-cargo-mcp/",
+      "install": "pip install meok-iata-dgr-air-cargo-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£99/mo",
+      "domains": [
+        "car-transport",
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "imo-marpol-marine",
+      "name": "meok-imo-marpol-marine-mcp",
+      "tagline": "⚓ IMO MARPOL Annex VI + EU ETS Maritime + IMDG + CII/EEXI for shipping fleets.",
+      "pypi": "https://pypi.org/project/meok-imo-marpol-marine-mcp/",
+      "install": "pip install meok-imo-marpol-marine-mcp",
+      "tools": 8,
+      "starterStripeUrl": null,
+      "starterPrice": "£149/mo",
+      "domains": [
+        "car-transport",
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "rail-freight-uk",
+      "name": "meok-rail-freight-uk-mcp",
+      "tagline": "🚂 UK rail freight — ORR licence + ROGS + TSI WAG/LOC&PAS + RID Class 7 + Network Code.",
+      "pypi": "https://pypi.org/project/meok-rail-freight-uk-mcp/",
+      "install": "pip install meok-rail-freight-uk-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "£149/mo",
+      "domains": [
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "livestock-welfare-transport",
+      "name": "meok-livestock-welfare-transport-mcp",
+      "tagline": "🐄 EU 1/2005 + UK SI 2006/3260 — journey logs, Type 1/2 auth, species density, APHA prep.",
+      "pypi": "https://pypi.org/project/meok-livestock-welfare-transport-mcp/",
+      "install": "pip install meok-livestock-welfare-transport-mcp",
+      "tools": 7,
+      "starterStripeUrl": null,
+      "starterPrice": "£79/mo",
+      "domains": [
+        "general-haulage"
+      ],
+      "published": false
+    },
+    {
+      "id": "haulage-governance-bridge",
+      "name": "meok-haulage-governance-bridge-mcp",
+      "tagline": "🛡 THE BRIDGE — every compliance attestation → EU AI Act + UK AI Bill + NIST RMF + ISO 42001.",
+      "pypi": "https://pypi.org/project/meok-haulage-governance-bridge-mcp/",
+      "install": "pip install meok-haulage-governance-bridge-mcp",
+      "tools": 10,
+      "starterStripeUrl": null,
+      "starterPrice": "£49/mo",
+      "domains": [
+        "haulage.app",
+        "general-haulage",
+        "crane-hire",
+        "car-transport",
+        "hiab-hire",
+        "plant-hire",
+        "grab-hire",
+        "muckaway"
+      ],
+      "published": false
+    }
+  ]
+}

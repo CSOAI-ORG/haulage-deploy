@@ -1,0 +1,117 @@
+# Haulage.app — MEOK AI Labs
+
+> The compliance + AI governance attestation layer for global trade. 32 MCP servers covering UK + EU + US + AU + Canada + cross-border + air + sea + rail + pharma + livestock. Every signed compliance attestation auto-bridges to EU AI Act + UK AI Bill + NIST AI RMF + ISO/IEC 42001.
+
+## Identity
+- **Name:** MEOK AI Labs / Haulage.app
+- **Founder:** Nicholas Templeman (nicholas@meok.ai)
+- **Company:** CSOAI LTD · Companies House 16939677
+- **Site:** https://haulage.app
+
+## Core offer
+Haulage.app is the umbrella for 9 UK trade verticals (plant hire, grab hire, muckaway, car transport, crane hire, hiab hire, general haulage, rail freight, livestock welfare) plus the **AI governance bridge** that maps every callable compliance tool to the EU AI Act, UK AI Bill (Art 22c ADM), NIST AI RMF, and ISO 42001.
+
+All MCPs are **MIT-licensed**, **published on PyPI**, and return **HMAC-signed attestations** for audit-trail evidence.
+
+## MCP catalogue
+
+### UK trade compliance (live + queued on PyPI)
+- meok-tacho-audit-mcp — DVSA OCRS prevention + Smart Tachograph 2 (Jul 2026) + Public Inquiry brief
+- meok-bs7121-mcp — Lift plan compliance for crane + hiab; CPA Contract-Lift triage; LOLER scheduling
+- meok-vehicle-handover-mcp — NAMA grading + BVRLA Fair Wear & Tear + damage-dispute pack
+- meok-ev-recall-transport-mcp — ADR Class 9 (UN3556/3557/3558) for damaged/recalled EVs
+- meok-dvsa-olicence-mcp — O-licence audit + Public Inquiry brief generator
+- meok-fors-clocs-mcp — FORS Bronze/Silver/Gold + CLOCS + DVSA Earned Recognition data feed
+- meok-allmi-hiab-mcp — Lorry-loader lift plan + brick-grab POD + magic-button SMS to site foreman
+- meok-cpa-contract-lift-mcp — CPA T&Cs + Baldwins-style litigation avoidance (£100k+ wedge)
+
+### Global trade compliance
+- meok-eu-mobility-package-mcp — EU 561/2006 + Posted Workers + IMI + Cabotage 3-in-7 + G2V2 deadline
+- meok-fmcsa-hours-of-service-mcp — US FMCSA HoS + ELD mandate + CSA BASICs
+- meok-nhvr-australia-mcp — Australia HVNL + NHVAS + Chain of Responsibility
+- meok-transport-canada-hos-mcp — Canada SOR/2005-313 + T-T-019 ELD + NSC
+- meok-iru-tir-international-mcp — IRU TIR Carnet (78 countries) + CMR + AEO
+- meok-iata-dgr-air-cargo-mcp — IATA Dangerous Goods Regulations for air cargo
+- meok-imo-marpol-marine-mcp — IMO MARPOL Annex VI + EU ETS Maritime + IMDG
+- meok-rail-freight-uk-mcp — UK ORR licence + ROGS + TSI WAG/LOC&PAS + RID Class 7
+- meok-uae-rta-transport-mcp — UAE Federal + 7 Emirates + GCC cross-border
+- meok-cold-chain-pharma-mcp — Pharmaceutical Good Distribution Practice (MHRA WDA(H) + WHO PQ)
+- meok-livestock-welfare-transport-mcp — UK + EU welfare in transport (Regulation 1/2005)
+- meok-uk-phv-tfl-mcp — UK Private Hire Vehicle + Hackney Carriage + TfL licensing
+
+### Governance bridge (the differentiator)
+- meok-haulage-governance-bridge-mcp — Maps every compliance attestation to EU AI Act (Art 9, 10, 11, 12, 13, 14, 16, 26, 27), UK AI Bill (Art 22c ADM), NIST AI RMF v1.0 (GOVERN/MAP/MEASURE/MANAGE), ISO/IEC 42001:2023 AIMS clauses.
+
+## Install (any MCP)
+```
+pip install meok-<name>-mcp
+```
+
+## Claude Desktop config
+```json
+{
+  "mcpServers": {
+    "tacho-audit": { "command": "uvx", "args": ["meok-tacho-audit-mcp"] },
+    "bs7121": { "command": "uvx", "args": ["meok-bs7121-mcp"] },
+    "governance-bridge": { "command": "uvx", "args": ["meok-haulage-governance-bridge-mcp"] }
+  }
+}
+```
+
+## Pricing
+- Free MIT self-host
+- Starter £29-£199/mo (single MCP + signed attestations)
+- Pro £79-£499/mo (full vertical + multi-user)
+- Fleet £499-£2,999/mo (multi-domain + audit export + SLA)
+- Earned Recognition £1,499/mo (DVSA ER data feed + named CSM)
+
+## Channel partnerships sought
+RHA, CPA, ALLMI, BVRLA, NAMA, SURVIVE, LEEA, ATA, IRU, FIATA, NHVR.
+
+## Developer surface (machine-readable)
+- OpenAPI 3.1: https://meok-attestation-api.vercel.app/openapi.json (16 paths)
+- Swagger UI: https://meok-attestation-api.vercel.app/docs
+- Catalogue JSON: https://haulage.app/catalogue.json (32 MCPs with live/pending flags)
+- ACP endpoint: POST https://meok-attestation-api.vercel.app/acp (Agent Communication Protocol)
+- Audit ledger: GET https://meok-attestation-api.vercel.app/api/audit (signed HMAC chain)
+- Webhooks: POST /api/webhooks/{subscribe,unsubscribe,list}
+
+## SDKs
+- Python: pip install meok-sdk
+- TypeScript: npm install @meok/sdk
+- Go: go get github.com/CSOAI-ORG/meok-go
+- CLI: pip install meok-cli (then `meok verify`, `meok docs`, `meok mcp list`)
+- VS Code: ext install csoai.meok-compliance-lens
+
+## Agent runtimes
+- Anthropic Skill: /Users/.../meok-skills/anthropic/meok-trade-compliance/SKILL.md
+- ChatGPT GPT Store: import OpenAPI from https://meok-attestation-api.vercel.app/openapi.json
+- Microsoft Copilot: connector manifest at meok-skills/microsoft/copilot-connector/
+- Slack: /meok verify | sign | catalogue | search | health
+- Microsoft Teams: same surface as Slack
+- Zapier + n8n + Make: auto-import OpenAPI spec
+
+## Conversion routes
+- 5-min quickstart: https://haulage.app/docs/quickstart
+- Self-serve onboarding wizard: https://haulage.app/onboarding (4 steps → Stripe checkout)
+- Pricing (UK GBP): https://haulage.app/pricing (PPP-adjusted for 10 regions internally)
+- Case studies + logo wall: https://haulage.app/case-studies
+- Partner / reseller program (15-25% lifetime): https://haulage.app/partners
+
+## Comparison pages (SEO)
+- /vs/mandata · /vs/microlise · /vs/fleetcheck · /vs/vanta
+
+## i18n
+14 locales × 248 keys = 3,472 strings: EN · FR · DE · ES · IT · PL · AR (RTL) · ZH · JA · KO · pt-BR · RU · HI · TR.
+
+## Trust signals
+- HMAC-SHA256 signed every tool result
+- Public verifier — POST a cert, get {valid: true|false}
+- Signed append-only audit ledger (Move #14)
+- SOC 2 Type 1 in 90-day path (Vanta + AssuranceLab)
+- WCAG 2.2 AAA audit scheduled (Hassell Inclusion)
+
+## Contact
+- Email: nicholas@meok.ai
+- LinkedIn: https://www.linkedin.com/in/nicholastempleman
+- GitHub: https://github.com/CSOAI-ORG

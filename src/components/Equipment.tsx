@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { mcps } from "@/data/mcps";
 
 const Equipment = () => {
+  const { t } = useTranslation();
   return (
     <section id="mcps" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-primary font-display uppercase tracking-wider text-sm">The Nine MCPs</span>
+          <span className="text-primary font-display uppercase tracking-wider text-sm">{t("equipment.eyebrow")}</span>
           <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-6">
-            Compliance, as <span className="text-gradient">Callable Tools</span>
+            {t("equipment.title_prefix")} <span className="text-gradient">{t("equipment.title_highlight")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Each MCP is a tiny, focused server — install via pip, call from Claude or any MCP-aware agent, get signed attestations back. All MIT-licensed, all on PyPI.
+            {t("equipment.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -25,10 +27,10 @@ const Equipment = () => {
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">{mcp.tools} tools</span>
+                  <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">{mcp.tools} {t("equipment.tools_suffix")}</span>
                 </div>
                 <h3 className="font-display text-lg font-bold mb-2 break-all">{mcp.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{mcp.tagline}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{t(`mcps_catalogue.${mcp.id}`, { defaultValue: mcp.tagline })}</p>
                 <code className="block text-xs bg-secondary/30 text-foreground px-3 py-2 rounded mb-4 break-all">{mcp.install}</code>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {mcp.pairs.map((d) => (
@@ -43,7 +45,7 @@ const Equipment = () => {
                     </a>
                   ) : (
                     <a href={`https://${mcp.pairs[0]}`} target="_blank" rel="noopener noreferrer" className="flex-1 text-xs uppercase tracking-wider text-center py-2 border border-primary/30 text-primary rounded hover:bg-primary/10 transition-colors">
-                      Try {mcp.pairs[0]} <ExternalLink className="inline w-3 h-3 ml-1" />
+                      {t("equipment.try_prefix")} {mcp.pairs[0]} <ExternalLink className="inline w-3 h-3 ml-1" />
                     </a>
                   )}
                 </div>
@@ -52,9 +54,9 @@ const Equipment = () => {
           })}
         </div>
         <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-6">Want all nine + the SaaS umbrella? Pro tier bundles them.</p>
+          <p className="text-muted-foreground mb-6">{t("equipment.bundle_note")}</p>
           <Button variant="hero" size="lg" asChild>
-            <Link to="/mcps">See full MCP catalogue<ArrowRight className="w-5 h-5 ml-2" /></Link>
+            <Link to="/mcps">{t("equipment.cta_full_catalogue")}<ArrowRight className="w-5 h-5 ml-2" /></Link>
           </Button>
         </div>
       </div>

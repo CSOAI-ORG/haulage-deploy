@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://haulage.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://haulage.app/mcps</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://haulage.app/pricing</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://haulage.app/governance</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://haulage.app/docs/quickstart</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/map</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/trust</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://haulage.app/vs/mandata</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/vs/microlise</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/vs/fleetcheck</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/vs/vanta</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/blog/launch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://haulage.app/onboarding</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://haulage.app/case-studies</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://haulage.app/partners</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://haulage.app/legal/privacy</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://haulage.app/legal/terms</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://haulage.app/legal/dpa</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://haulage.app/legal/cookies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://haulage.app/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://haulage.app/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>

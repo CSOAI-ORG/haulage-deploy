@@ -10,13 +10,13 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="Haulage.app — UK Trade Logistics & Compliance Hub | MEOK AI Labs"
-        description="One platform for UK trade logistics + compliance. Plant hire, grab hire, muckaway, plus 9 PyPI-published MCP servers shipping signed compliance attestations."
+        title="Haulage.app — Global Trade Compliance + AI Governance | MEOK AI Labs"
+        description="Global trade compliance + AI governance attestation layer. 32 PyPI-published MCP servers across UK + EU + US + AU + CA + UAE + air + sea + rail. Every signed compliance attestation auto-bridges to EU AI Act, UK AI Bill, NIST AI RMF, and ISO 42001."
         canonical="https://haulage.app"
       />
       <div className="min-h-screen bg-background">
         <Header />
-        <main>
+        <main id="main">
           <Hero />
           <Services />
           <Equipment />

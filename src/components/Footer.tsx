@@ -1,28 +1,43 @@
 import { ArrowRight, Github, Globe, Mail, Package } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import CsoaiBanner from "./CsoaiBanner";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const trades = [
-    { label: "Plant Hire", href: "https://planthire.ai", external: true },
-    { label: "Grab Hire", href: "https://grabhire.ai", external: true },
-    { label: "Muckaway", href: "https://muckaway.ai", external: true },
-    { label: "All 9 MCPs", href: "/mcps", external: false },
+    { label: t("footer.trade_plant_hire"), href: "https://planthire.ai", external: true },
+    { label: t("footer.trade_grab_hire"), href: "https://grabhire.ai", external: true },
+    { label: t("footer.trade_muckaway"), href: "https://muckaway.ai", external: true },
+    { label: "Coverage Map", href: "/map", external: false },
+    { label: t("footer.trade_all_mcps"), href: "/mcps", external: false },
   ];
   const stack = [
-    { label: "MEOK AI Labs", href: "https://meok.ai" },
-    { label: "Council of AI", href: "https://councilof.ai" },
-    { label: "MEOK Compliance", href: "https://meok-compliance.vercel.app" },
-    { label: "Attestation API", href: "https://meok-attestation-api.vercel.app" },
+    { label: t("footer.link_meok_labs"), href: "https://meok.ai" },
+    { label: t("footer.link_council"), href: "https://councilof.ai" },
+    { label: t("footer.link_compliance"), href: "https://meok-compliance.vercel.app" },
+    { label: t("footer.link_attestation_api"), href: "https://meok-attestation-api.vercel.app" },
   ];
   const links = [
-    { label: "Home", href: "/" },
-    { label: "MCPs", href: "/mcps" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: t("footer.nav_home"), href: "/" },
+    { label: t("footer.nav_mcps"), href: "/mcps" },
+    { label: t("footer.nav_trust", "Trust & Security"), href: "/trust" },
+    { label: t("footer.nav_onboarding", "Onboarding"), href: "/onboarding" },
+    { label: t("footer.nav_case_studies", "Case studies"), href: "/case-studies" },
+    { label: t("footer.nav_partners", "Partners"), href: "/partners" },
+    { label: t("footer.nav_about"), href: "/about" },
+    { label: t("footer.nav_contact"), href: "/contact" },
+  ];
+  const legalLinks = [
+    { label: t("footer.legal_privacy", "Privacy"), href: "/legal/privacy" },
+    { label: t("footer.legal_terms", "Terms"), href: "/legal/terms" },
+    { label: t("footer.legal_dpa", "DPA"), href: "/legal/dpa" },
+    { label: t("footer.legal_cookies", "Cookies"), href: "/legal/cookies" },
   ];
 
   return (
     <footer className="bg-tr8-charcoal border-t border-border">
+      <CsoaiBanner />
       <div className="container mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-1">
@@ -33,7 +48,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-muted-foreground mb-6">
-              The umbrella platform for UK trade logistics + compliance. Built solo by MEOK AI Labs in London.
+              {t("footer.intro")}
             </p>
             <div className="flex gap-3">
               <a href="https://github.com/CSOAI-ORG" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary transition-colors group" aria-label="GitHub">
@@ -45,7 +60,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h3 className="font-display text-lg font-bold mb-6 text-foreground">Trade Verticals</h3>
+            <h3 className="font-display text-lg font-bold mb-6 text-foreground">{t("footer.trade_verticals_heading")}</h3>
             <ul className="space-y-3">
               {trades.map((l) => l.external ? (
                 <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all" />{l.label}</a></li>
@@ -55,7 +70,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-display text-lg font-bold mb-6 text-foreground">MEOK Stack</h3>
+            <h3 className="font-display text-lg font-bold mb-6 text-foreground">{t("footer.stack_heading")}</h3>
             <ul className="space-y-3">
               {stack.map((l) => (
                 <li key={l.href}><a href={l.href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all" />{l.label}</a></li>
@@ -63,7 +78,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-display text-lg font-bold mb-6 text-foreground">Site</h3>
+            <h3 className="font-display text-lg font-bold mb-6 text-foreground">{t("footer.site_heading")}</h3>
             <ul className="space-y-3 mb-6">
               {links.map((l) => (
                 <li key={l.href}><Link to={l.href} className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all" />{l.label}</Link></li>
@@ -78,9 +93,24 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm text-center md:text-left">© {new Date().getFullYear()} MEOK AI Labs · CSOAI LTD · Companies House 16939677.</p>
-            <p className="text-muted-foreground text-xs">MIT-licensed · Plant · Grab · Muckaway · 9 MCPs</p>
+            <p className="text-muted-foreground text-sm text-center md:text-left">{t("footer.copyright_prefix")} {new Date().getFullYear()} {t("footer.copyright_suffix")}</p>
+            <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-2 justify-center text-xs">
+              {legalLinks.map((l) => (
+                <Link key={l.href} to={l.href} className="text-muted-foreground hover:text-primary transition-colors">{l.label}</Link>
+              ))}
+              <a
+                href="https://status.haulage.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                title="Service status (Better Stack)"
+              >
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true" />
+                {t("footer.status_label", "Status")}
+              </a>
+            </nav>
           </div>
+          <p className="text-muted-foreground text-xs text-center md:text-right mt-4">{t("footer.summary_tags")}</p>
         </div>
       </div>
     </footer>
