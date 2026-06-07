@@ -27,6 +27,11 @@ const OnboardingPage = lazy(() => import("./pages/OnboardingPage"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
 const PartnersPage = lazy(() => import("./pages/PartnersPage"));
 const LegalPage = lazy(() => import("./pages/LegalPage"));
+const GlossaryPage = lazy(() => import("./pages/GlossaryPage"));
+const ControlsPage = lazy(() => import("./pages/ControlsPage"));
+const IntegrationsPage = lazy(() => import("./pages/IntegrationsPage"));
+const StatusPage = lazy(() => import("./pages/StatusPage"));
+const ChangelogPage = lazy(() => import("./pages/ChangelogPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -55,6 +60,11 @@ const App = () => (
             <Route path="/case-studies" element={<CaseStudiesPage />} />
             <Route path="/partners" element={<PartnersPage />} />
             <Route path="/legal/:doc" element={<LegalPage />} />
+            <Route path="/glossary" element={<GlossaryPage />} />
+            <Route path="/controls" element={<ControlsPage />} />
+            <Route path="/integrations" element={<IntegrationsPage />} />
+            <Route path="/status" element={<StatusPage />} />
+            <Route path="/changelog" element={<ChangelogPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />

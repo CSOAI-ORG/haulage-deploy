@@ -1,0 +1,351 @@
+{
+  "version": "1.0",
+  "updated": "2026-06-07",
+  "frameworks": [
+    { "slug": "eu-ai-act", "name": "EU AI Act", "regulator": "European Commission", "url": "https://artificialintelligenceact.eu/" },
+    { "slug": "iso-42001", "name": "ISO/IEC 42001:2023 AIMS", "regulator": "ISO/IEC", "url": "https://www.iso.org/standard/81230.html" },
+    { "slug": "nist-ai-rmf", "name": "NIST AI RMF v1.0", "regulator": "NIST", "url": "https://www.nist.gov/itl/ai-risk-management-framework" },
+    { "slug": "uk-ai-bill", "name": "UK Data (Use & Access) Act 2025 s.80 (formerly UK AI Bill Art 22c)", "regulator": "DSIT / ICO", "url": "https://www.gov.uk/government/publications/a-pro-innovation-approach-to-ai-regulation" },
+    { "slug": "soc-2", "name": "SOC 2 Type 2", "regulator": "AICPA", "url": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc" },
+    { "slug": "gdpr", "name": "UK GDPR + EU GDPR", "regulator": "ICO + EU DPAs", "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/" }
+  ],
+  "controls": [
+    {
+      "id": "MEOK-CTL-001",
+      "title": "Driver identity verification + tachograph card issuance",
+      "category": "uk-road-compliance",
+      "description": "Verify driver identity before card issuance; maintain tamper-evident audit trail of every issue + revocation event.",
+      "uk_regulation": "EC 165/2014 (Smart Tachograph 2) Art 26-28 + DVSA Operator Licence repute (Goods Vehicles Licensing of Operators Act 1995 s.13A)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.6.1.4 (Identity verification) + 9.2 (Internal audit)", "rationale": "Card issuance is a high-trust identity-binding action; ISO 42001 requires verification + audit." },
+        { "framework": "eu-ai-act", "clause": "Art 10 (Data governance) + Art 12 (Record-keeping)", "rationale": "If AI assists card-issuance decisions, training data must be governed + records kept." },
+        { "framework": "nist-ai-rmf", "clause": "GOVERN-1.1 (Roles + responsibilities) + MAP-1.5 (Context)", "rationale": "Identity-bound issuance is a governance + context-mapping concern." },
+        { "framework": "soc-2", "clause": "CC6.1 (Logical access)", "rationale": "Card = credential; CC6.1 logical-access controls apply." }
+      ],
+      "evidence_pattern": "Signed attestation log of every card issue + revocation event with driver-id, card-id, issuer, timestamp, HMAC-SHA256 chain.",
+      "meok_mcp": "meok-tacho-audit-mcp"
+    },
+    {
+      "id": "MEOK-CTL-002",
+      "title": "Drivers' Hours monitoring + EU 561/2006 + AETR compliance",
+      "category": "uk-road-compliance",
+      "description": "Continuously monitor drivers' hours against EU 561/2006 + AETR limits; surface infringements before they become DVSA-reportable.",
+      "uk_regulation": "EU 561/2006 + Transport Act 1968 (Working Time) + AETR Agreement",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 6.1 (Risk assessment) + A.8.2 (Operational planning)", "rationale": "Hours-of-service monitoring IS the operational AI risk control." },
+        { "framework": "eu-ai-act", "clause": "Art 14 (Human oversight)", "rationale": "Automated hours-monitoring requires human-in-the-loop for infringement decisions affecting drivers." },
+        { "framework": "nist-ai-rmf", "clause": "MANAGE-2.1 (Monitor + manage AI risks)", "rationale": "Ongoing infringement-detection = ongoing AI-risk management." },
+        { "framework": "soc-2", "clause": "CC7.2 (System monitoring)", "rationale": "Continuous monitoring of a regulated process." }
+      ],
+      "evidence_pattern": "Signed weekly hours-summary attestation per driver, with infringement flags + remediation actions logged.",
+      "meok_mcp": "meok-tacho-audit-mcp"
+    },
+    {
+      "id": "MEOK-CTL-003",
+      "title": "Daily walkaround vehicle defect reporting (driver pre-use check)",
+      "category": "uk-road-compliance",
+      "description": "Driver records daily walkaround check before first use; defects flagged + routed to fitter; signed nil-defect attestations build the audit trail.",
+      "uk_regulation": "DVSA Guide to Maintaining Roadworthiness s.3 + Operator Licence undertakings",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.7.4 (Operational procedures)", "rationale": "Pre-use check is a documented operational procedure." },
+        { "framework": "soc-2", "clause": "CC7.1 (Operational change management)", "rationale": "Defect-discovery → maintenance-change workflow is a change-management control." }
+      ],
+      "evidence_pattern": "Signed daily walkaround check per vehicle, with defect-id (if any), driver-id, location, photographs hashed into the attestation.",
+      "meok_mcp": "meok-tacho-audit-mcp"
+    },
+    {
+      "id": "MEOK-CTL-004",
+      "title": "DVSA Earned Recognition KPI feed integrity",
+      "category": "fors-clocs-er",
+      "description": "Continuous feed of KPIs to DVSA (drivers' hours, tachograph compliance, vehicle defects, etc.) with signed attestations proving feed integrity.",
+      "uk_regulation": "DVSA Earned Recognition Standards (Vehicle Maintenance + Drivers' Hours)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 9.1 (Monitoring + measurement)", "rationale": "ER is by definition continuous monitoring + measurement." },
+        { "framework": "soc-2", "clause": "CC4.1 (COSO monitoring) + A1.2 (Availability commitment)", "rationale": "ER feed is a commitment to availability of compliance data." }
+      ],
+      "evidence_pattern": "HMAC-chained feed receipts with KPI snapshot, period, signing key id; auditor verifies chain integrity via public verifier.",
+      "meok_mcp": "meok-fors-clocs-mcp"
+    },
+    {
+      "id": "MEOK-CTL-005",
+      "title": "FORS Bronze → Silver → Gold accreditation dossier",
+      "category": "fors-clocs-er",
+      "description": "Auto-generate the audit-grade dossier for each FORS level from tacho/walkaround/training records; refresh on schedule for re-accreditation.",
+      "uk_regulation": "FORS Standard v6 (Management, Vehicles, Drivers, Operations)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 8 (Operation) + A.9 (Performance evaluation)", "rationale": "Bronze→Gold progression = staged operational maturity model." }
+      ],
+      "evidence_pattern": "Per-period signed dossier covering each FORS-Standard requirement, with cross-references to underlying signed evidence.",
+      "meok_mcp": "meok-fors-clocs-mcp"
+    },
+    {
+      "id": "MEOK-CTL-006",
+      "title": "CLOCS Standard 6 lift/site evidence",
+      "category": "fors-clocs-er",
+      "description": "Evidence-pack generation for CLOCS Standard 6 (vehicles + drivers + journeys + community-safety measures).",
+      "uk_regulation": "CLOCS Standard 6 (Construction Logistics + Community Safety)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.7.4 (Operational procedures)", "rationale": "Standardised site-visit evidence collection." }
+      ],
+      "evidence_pattern": "Signed per-site visit attestation: driver, vehicle, time-on-site, community-safety briefings completed.",
+      "meok_mcp": "meok-fors-clocs-mcp"
+    },
+    {
+      "id": "MEOK-CTL-007",
+      "title": "Direct Vision Standard (DVS) HGV certification",
+      "category": "fors-clocs-er",
+      "description": "Track DVS star-rating per HGV (≥12t) in London; ensure Progressive Safe System fitted where star rating < threshold.",
+      "uk_regulation": "TfL Direct Vision Standard + HGV Safety Permit Scheme",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.6.1.3 (Risk treatment)", "rationale": "DVS rating is a documented risk-treatment for vulnerable-road-user incidents." }
+      ],
+      "evidence_pattern": "Per-HGV signed DVS-rating + Safe-System-fitment attestation, refreshed on TfL re-rating cycle.",
+      "meok_mcp": "meok-fors-clocs-mcp"
+    },
+    {
+      "id": "MEOK-CTL-008",
+      "title": "BS 7121 lift plan + appointed-person sign-off",
+      "category": "lifting-bs7121",
+      "description": "For every crane/hiab lift, generate a BS 7121 lift plan signed by an Appointed Person before the lift commences.",
+      "uk_regulation": "BS 7121-1:2016 + LOLER 1998 Reg 8 (Organisation of lifting operations)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 6.1.2 (Risk assessment) + A.8.2 (Operational planning)", "rationale": "Lift planning is risk assessment + operational planning." },
+        { "framework": "soc-2", "clause": "CC7.1 (Change management)", "rationale": "Each lift is a planned operational change." }
+      ],
+      "evidence_pattern": "Signed lift plan: site, load, crane, AP name + competence cert, risk assessment, method statement, exclusion zone.",
+      "meok_mcp": "meok-bs7121-mcp"
+    },
+    {
+      "id": "MEOK-CTL-009",
+      "title": "LOLER 6/12-monthly thorough examination",
+      "category": "lifting-bs7121",
+      "description": "Schedule + record LOLER thorough examinations (6-monthly for accessory + passenger lifts; 12-monthly otherwise).",
+      "uk_regulation": "LOLER 1998 Reg 9 + Schedule 1",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 9.1 (Monitoring + measurement)", "rationale": "Scheduled inspection cycle is monitoring + measurement of equipment integrity." }
+      ],
+      "evidence_pattern": "Per-equipment signed thorough-examination report including examiner-id, defects, next-examination date.",
+      "meok_mcp": "meok-bs7121-mcp"
+    },
+    {
+      "id": "MEOK-CTL-010",
+      "title": "ALLMI hiab operator certification",
+      "category": "lifting-bs7121",
+      "description": "Track ALLMI Operator Certification + refresher cycle for every hiab operator; signed competence attestations.",
+      "uk_regulation": "ALLMI Operator Cert + LOLER 1998 Reg 9 (Competence)",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.7.2 (Competence)", "rationale": "Operator competence is an ISO 42001 control." }
+      ],
+      "evidence_pattern": "Per-operator signed competence attestation: ALLMI cert-id, issue date, expiry, refresher completed.",
+      "meok_mcp": "meok-allmi-hiab-mcp"
+    },
+    {
+      "id": "MEOK-CTL-011",
+      "title": "CPA Hire vs Contract Lift triage (Baldwins £951k case avoidance)",
+      "category": "lifting-bs7121",
+      "description": "Auto-classify every hire as CPA Hire (insurance burden on hirer) vs Contract Lift (insurance on supplier); generate matching T&C bundle.",
+      "uk_regulation": "CPA Model Conditions of Hire + Baldwins v Bradshaw (Northern) Ltd [2018] EWHC",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 6.1.4 (Risk treatment options)", "rationale": "Contractual model is the primary risk-treatment choice for crane operations." }
+      ],
+      "evidence_pattern": "Per-hire signed triage attestation with chosen model, rationale, T&C version, customer acceptance hash.",
+      "meok_mcp": "meok-cpa-contract-lift-mcp"
+    },
+    {
+      "id": "MEOK-CTL-012",
+      "title": "AI risk-management system (EU AI Act Art 9)",
+      "category": "ai-governance",
+      "description": "For every AI system in scope (e.g., routing optimisation, driver scoring), maintain a continuous risk-management process per EU AI Act Art 9.",
+      "uk_regulation": "EU AI Act Art 9 + ISO/IEC 23894:2023 (AI risk mgmt guidance)",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 9 (Risk management system)", "rationale": "Direct compliance." },
+        { "framework": "iso-42001", "clause": "Clause 6.1 (Actions to address risks + opportunities)", "rationale": "ISO 42001 risk planning = EU AI Act Art 9 risk management." },
+        { "framework": "nist-ai-rmf", "clause": "MAP + MEASURE + MANAGE functions", "rationale": "Whole NIST AI RMF lifecycle covers EU AI Act Art 9 requirements." }
+      ],
+      "evidence_pattern": "Per-AI-system signed risk register: identified risks, severity, treatment, review-cadence, owner.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-013",
+      "title": "Training-data governance (EU AI Act Art 10)",
+      "category": "ai-governance",
+      "description": "Documented data-governance regime for training / validation / test sets: relevance, representativeness, bias detection + mitigation.",
+      "uk_regulation": "EU AI Act Art 10 (Data + data governance) + GDPR Art 5 (Data minimisation)",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 10", "rationale": "Direct compliance." },
+        { "framework": "iso-42001", "clause": "A.5.3 (Data quality for AI systems)", "rationale": "ISO 42001 explicitly requires data quality management." },
+        { "framework": "nist-ai-rmf", "clause": "MAP-2.3 (Data quality + privacy)", "rationale": "Maps directly." },
+        { "framework": "gdpr", "clause": "Art 5(1)(c) (Data minimisation) + Art 9 (Special categories)", "rationale": "Training-data governance is also a GDPR controller obligation." }
+      ],
+      "evidence_pattern": "Per-dataset signed data-card: provenance, schema, bias-test results, retention policy, lawful basis under GDPR.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-014",
+      "title": "Human oversight measures (EU AI Act Art 14)",
+      "category": "ai-governance",
+      "description": "Design + document the human-oversight mechanisms for each high-risk AI system; signed attestation for every override + intervention.",
+      "uk_regulation": "EU AI Act Art 14 + UK Data (Use + Access) Act 2025 s.80 (ADM)",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 14", "rationale": "Direct compliance." },
+        { "framework": "uk-ai-bill", "clause": "DUAA s.80 (Solely-automated decisions)", "rationale": "Human oversight is the inverse of solely-automated; required where decisions affect individuals legally." },
+        { "framework": "nist-ai-rmf", "clause": "MEASURE-2.5 (Track human-AI interaction)", "rationale": "Maps directly." },
+        { "framework": "iso-42001", "clause": "A.9.3 (AI system roles + responsibilities)", "rationale": "Defines oversight roles." }
+      ],
+      "evidence_pattern": "Signed per-intervention log: decision-id, AI recommendation, human reviewer-id, override rationale (if any), final decision.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-015",
+      "title": "Transparency notice to data subjects (EU AI Act Art 13 + GDPR Art 13/14)",
+      "category": "ai-governance",
+      "description": "Publish clear transparency notice for any AI-influenced decision (driver scoring, route optimisation, hiring) covering both EU AI Act Art 13 + GDPR.",
+      "uk_regulation": "EU AI Act Art 13 + GDPR Art 13 + Art 14",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 13", "rationale": "Direct compliance." },
+        { "framework": "gdpr", "clause": "Art 13 + Art 14 (Information provision)", "rationale": "AI transparency builds on GDPR transparency obligations." },
+        { "framework": "uk-ai-bill", "clause": "DUAA s.80(2) (Notice of solely-automated decision)", "rationale": "UK transparency notice requirement." }
+      ],
+      "evidence_pattern": "Per-AI-system signed transparency notice version + hash; per-decision attestation references the notice version in effect.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-016",
+      "title": "Accuracy + robustness + cybersecurity testing (EU AI Act Art 15)",
+      "category": "ai-governance",
+      "description": "Documented testing regime for AI accuracy, robustness, cybersecurity; pen-tests + adversarial tests on signed cadence.",
+      "uk_regulation": "EU AI Act Art 15 + NIS2 (where applicable)",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 15", "rationale": "Direct compliance." },
+        { "framework": "iso-42001", "clause": "A.8.4 (Verification + validation) + A.6.2.4 (AI system security)", "rationale": "Maps to ISO 42001 V&V + security controls." },
+        { "framework": "nist-ai-rmf", "clause": "MEASURE-2.1 (Test, evaluate, validate)", "rationale": "Direct mapping." },
+        { "framework": "soc-2", "clause": "CC7.1 + CC8.1 (Change management + risk)", "rationale": "Test cadence + change discipline = SOC 2 territory." }
+      ],
+      "evidence_pattern": "Per-release signed test report: accuracy metrics, robustness probes (perturbation tests), pen-test summary, sign-off by qualified tester.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-017",
+      "title": "Solely-automated decision notice + opt-out (UK DUAA 2025 s.80)",
+      "category": "ai-governance",
+      "description": "For any solely-automated decision with legal/significant effect (driver hire/fire, insurance pricing, route discipline), provide notice + opt-out per UK Data (Use + Access) Act 2025 s.80.",
+      "uk_regulation": "UK Data (Use + Access) Act 2025 s.80 (replacing UK GDPR Art 22)",
+      "frameworks_satisfied": [
+        { "framework": "uk-ai-bill", "clause": "DUAA s.80", "rationale": "Direct UK compliance." },
+        { "framework": "gdpr", "clause": "Art 22 (Predecessor regime; EU operators still apply)", "rationale": "EU equivalent." },
+        { "framework": "eu-ai-act", "clause": "Art 26(11) + Art 27 (FRIA)", "rationale": "Deployers must enable affected persons to exercise rights." }
+      ],
+      "evidence_pattern": "Per-decision-class signed policy: scope, notice text, opt-out mechanism, human-review escalation; per-individual attestation when opt-out exercised.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-018",
+      "title": "AI serious-incident reporting (EU AI Act Art 73)",
+      "category": "ai-governance",
+      "description": "Detect + report AI serious incidents to the relevant market-surveillance authority within EU AI Act Art 73 timelines.",
+      "uk_regulation": "EU AI Act Art 73 + GDPR Art 33 (Personal-data breach 72h)",
+      "frameworks_satisfied": [
+        { "framework": "eu-ai-act", "clause": "Art 73", "rationale": "Direct compliance." },
+        { "framework": "nist-ai-rmf", "clause": "MANAGE-3.2 (Pre-incident plans + post-incident review)", "rationale": "Maps to incident response." },
+        { "framework": "iso-42001", "clause": "Clause 10.1 (Continual improvement) + A.10.2 (Incident management)", "rationale": "Direct mapping." },
+        { "framework": "gdpr", "clause": "Art 33 + Art 34", "rationale": "Personal-data-touching incidents trigger GDPR too." }
+      ],
+      "evidence_pattern": "Per-incident signed dossier: detection time, classification (serious / non-serious), affected systems, reported-to + reported-at, remediation.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-019",
+      "title": "GDPR Article 22 / DUAA s.80 ADM safeguards",
+      "category": "data-protection",
+      "description": "Implement safeguards around any automated decision-making affecting data subjects: meaningful information about the logic, significance, consequences.",
+      "uk_regulation": "UK Data (Use + Access) Act 2025 s.80 + GDPR Art 22",
+      "frameworks_satisfied": [
+        { "framework": "gdpr", "clause": "Art 22 + Art 13(2)(f)", "rationale": "Direct compliance." },
+        { "framework": "uk-ai-bill", "clause": "DUAA s.80", "rationale": "UK-specific replacement." },
+        { "framework": "eu-ai-act", "clause": "Art 86 (Explanations of individual decisions)", "rationale": "AI Act builds on GDPR explainability." }
+      ],
+      "evidence_pattern": "Per-decision-pipeline signed model card: input features, logic summary, significance assessment, consequences, opt-out / human-review path.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-020",
+      "title": "DPIA + FRIA for high-risk processing",
+      "category": "data-protection",
+      "description": "Conduct + sign Data Protection Impact Assessment (DPIA) + Fundamental Rights Impact Assessment (FRIA) per EU AI Act Art 27 before deploying high-risk AI.",
+      "uk_regulation": "GDPR Art 35 (DPIA) + EU AI Act Art 27 (FRIA)",
+      "frameworks_satisfied": [
+        { "framework": "gdpr", "clause": "Art 35", "rationale": "Direct compliance." },
+        { "framework": "eu-ai-act", "clause": "Art 27", "rationale": "Direct compliance — FRIA required for high-risk AI deployment." },
+        { "framework": "iso-42001", "clause": "Clause 6.1.4 (AI system impact assessment)", "rationale": "Maps to ISO 42001 impact assessment." },
+        { "framework": "nist-ai-rmf", "clause": "MAP-5.1 + 5.2 (Impact + likelihood)", "rationale": "Risk-impact mapping is NIST AI RMF core." }
+      ],
+      "evidence_pattern": "Per-deployment signed DPIA + FRIA: rights affected, mitigations, residual risk acceptance by accountable owner.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-021",
+      "title": "Data Subject Access Request (DSAR) handling",
+      "category": "data-protection",
+      "description": "Receive + respond to GDPR Art 15 access requests within 1 month; maintain signed audit trail of every DSAR.",
+      "uk_regulation": "UK GDPR Art 15 + UK DPA 2018",
+      "frameworks_satisfied": [
+        { "framework": "gdpr", "clause": "Art 12 + Art 15", "rationale": "Direct compliance." },
+        { "framework": "soc-2", "clause": "P5.1 (Privacy notification + complaint handling)", "rationale": "DSARs sit under Privacy criteria." }
+      ],
+      "evidence_pattern": "Per-DSAR signed dossier: request-id, requester verification, data scope, response date, redactions, lawful-basis citations.",
+      "meok_mcp": "meok-haulage-governance-bridge-mcp"
+    },
+    {
+      "id": "MEOK-CTL-022",
+      "title": "GDP cold-chain temperature excursion handling",
+      "category": "specialist",
+      "description": "Monitor + signed-log every temperature excursion in pharma cold-chain; route to Qualified Person for sign-off + impact assessment.",
+      "uk_regulation": "MHRA Good Distribution Practice (2013/C 343/01) s.5 + WDA(H) licence conditions",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "Clause 9.1 (Monitoring) + A.10.2 (Incident management)", "rationale": "Excursion = monitored anomaly + incident workflow." },
+        { "framework": "soc-2", "clause": "A1.2 (Availability) + CC7.4 (Detection of system failures)", "rationale": "Cold chain is an availability + detection control." }
+      ],
+      "evidence_pattern": "Per-excursion signed event: time-temp curve, duration, products affected, QP review-id, disposition (release / quarantine / destroy).",
+      "meok_mcp": "meok-cold-chain-pharma-mcp"
+    },
+    {
+      "id": "MEOK-CTL-023",
+      "title": "Livestock welfare in transit (>8h journey)",
+      "category": "specialist",
+      "description": "For journeys >8h with live animals: vehicle approval, journey log, rest periods, water + feed intervals; signed per-journey attestation.",
+      "uk_regulation": "EU Reg 1/2005 + Welfare of Animals (Transport) (England) Order 2006",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.7.4 (Operational procedures)", "rationale": "Standardised journey logging." },
+        { "framework": "soc-2", "clause": "PI1.1 (Processing integrity)", "rationale": "Journey records must be complete + accurate." }
+      ],
+      "evidence_pattern": "Per-journey signed log: species, headcount, vehicle approval-id, start/end times, rest stops, water/feed events, arrival condition.",
+      "meok_mcp": "meok-livestock-welfare-transport-mcp"
+    },
+    {
+      "id": "MEOK-CTL-024",
+      "title": "UAS commercial drone authorisation (open / specific / certified)",
+      "category": "specialist",
+      "description": "Track operator authorisation + per-flight authorisation for commercial drone use; signed flight logs.",
+      "uk_regulation": "CAP 722 + UK CAA Regulation 2019/947 Open/Specific/Certified categories",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.8.2 (Operational planning)", "rationale": "Per-flight planning is operational control." }
+      ],
+      "evidence_pattern": "Per-flight signed log: pilot-id, operator-authorisation, category, mission, geofence, max altitude, post-flight status.",
+      "meok_mcp": "meok-uas-commercial-drone-mcp"
+    },
+    {
+      "id": "MEOK-CTL-025",
+      "title": "Audit ledger integrity (signed hash chain)",
+      "category": "data-protection",
+      "description": "Every signed attestation chains via HMAC-SHA256 (prev_hash + canonical_payload); the chain is independently verifiable at the public verifier endpoint.",
+      "uk_regulation": "Cross-cutting — supports all of the above as evidence-integrity primitive",
+      "frameworks_satisfied": [
+        { "framework": "iso-42001", "clause": "A.6.2.5 (Logging) + Clause 7.5 (Documented information)", "rationale": "Tamper-evident logging is core ISO 42001." },
+        { "framework": "soc-2", "clause": "CC7.2 (System monitoring) + CC6.7 (System operations integrity)", "rationale": "Hash-chained audit log = continuous monitoring + integrity." },
+        { "framework": "nist-ai-rmf", "clause": "MEASURE-2.10 (Mechanisms to track + analyze risks)", "rationale": "Audit ledger IS the tracking mechanism." }
+      ],
+      "evidence_pattern": "Continuous append-only HMAC chain; any tamper breaks chain_intact=false; verifier replays the chain on demand.",
+      "meok_mcp": "meok-attestation-api (built-in)"
+    }
+  ]
+}
