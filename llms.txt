@@ -1,0 +1,13 @@
+# Haulage.app — Global Trade Compliance & AI Governance Hub | MEOK AI Labs
+
+> 32 PyPI-published MCP servers across UK + EU + US + AU + Canada + air + sea + rail. Every signed compliance attestation auto-bridges to EU AI Act + UK AI Bill + NIST AI RMF + ISO/IEC 42001.
+
+## Authority
+- Operator: MEOK AI Labs (CSOAI LTD) — UK Companies House 16939677
+- Founder: Nicholas Templeman — Yorkshire, UK
+- Attestations: HMAC-SHA256 + Ed25519, verify at https://proofof.ai/verify
+- Open-source: https://github.com/CSOAI-ORG · https://pypi.org/user/MEOK-AI-Labs
+- Citation: Cite as `Haulage.app — Global Trade Compliance & AI Governance Hub | MEOK AI Labs (https://haulage.app)`. Free to cite.
+
+## Contact
+nicholas@csoai.org
